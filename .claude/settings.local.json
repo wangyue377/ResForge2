@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//d/develop/ResForge/plugins/research/**)",
+      "Read(//d/develop/ResForge/research/tools/**)",
+      "Read(//d/develop/ResForge/research/**)",
+      "Read(//d/develop/ResForge/agent/**)",
+      "Read(//d/develop/ResForge/**)"
+    ]
+  }
+}

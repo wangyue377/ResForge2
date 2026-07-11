@@ -1,0 +1,66 @@
+services:
+  postgres:
+    image: pgvector/pgvector:pg16
+    container_name: research-postgres
+    ports:
+      - "${PG_PORT:-5432}:5432"
+    environment:
+      POSTGRES_DB: "${PG_DB:-research_assistant}"
+      POSTGRES_USER: "${PG_USER:-research}"
+      POSTGRES_PASSWORD: "${PG_PASSWORD:-research_pass}"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./docker/postgres/init.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${PG_USER:-research} -d ${PG_DB:-research_assistant}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+    networks:
+      - research-network
+
+  neo4j:
+    image: neo4j:5
+    container_name: research-neo4j
+    ports:
+      - "${NEO4J_HTTP_PORT:-7474}:7474"
+      - "${NEO4J_BOLT_PORT:-7687}:7687"
+    environment:
+      NEO4J_AUTH: "${NEO4J_USER:-neo4j}/${NEO4J_PASSWORD:-research_graph}"
+      NEO4J_PLUGINS: '["apoc", "graph-data-science"]'
+    volumes:
+      - neo4jdata:/data
+    healthcheck:
+      test: ["CMD-SHELL", "cypher-shell -u ${NEO4J_USER:-neo4j} -p ${NEO4J_PASSWORD:-research_graph} 'RETURN 1'"]
+      interval: 15s
+      timeout: 10s
+      retries: 5
+    restart: unless-stopped
+    networks:
+      - research-network
+
+  redis:
+    image: redis:7-alpine
+    container_name: research-redis
+    ports:
+      - "${REDIS_PORT:-6379}:6379"
+    volumes:
+      - redisdata:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+    restart: unless-stopped
+    networks:
+      - research-network
+
+volumes:
+  pgdata:
+  neo4jdata:
+  redisdata:
+
+networks:
+  research-network:
+    driver: bridge

@@ -1,0 +1,75 @@
+[llm]
+provider = "openai"
+
+[llm.main]
+model = "hunyuan/hy3"
+api_key = "${HY3_API_KEY}"
+base_url = "https://api.hunyuan.cloud.tencent.com/v1"
+enable_thinking = false
+multimodal = false
+
+[llm.fast]
+model = "hunyuan/hy3"
+api_key = "${HY3_API_KEY}"
+base_url = "https://api.hunyuan.cloud.tencent.com/v1"
+
+[llm.vl]
+model = ""
+api_key = ""
+base_url = ""
+
+[agent]
+system_prompt = "You are Hy3 Research Assistant, built on Tencent Hunyuan Hy3."
+max_tokens = 8192
+max_iterations = 40
+dev_mode = false
+
+[agent.context]
+memory_window = 40
+
+[agent.tools]
+search_enabled = true
+
+[channels.cli]
+enabled = true
+
+[memory]
+enabled = true
+engine = ""
+
+[memory.embedding]
+model = "hunyuan/hy3"
+api_key = "${HY3_API_KEY}"
+base_url = "https://api.hunyuan.cloud.tencent.com/v1"
+
+[proactive]
+enabled = false
+
+[research]
+enabled = true
+
+[research.database]
+type = "postgresql"
+host = "localhost"
+port = 5432
+db = "research_assistant"
+user = "research"
+password = "research_pass"
+
+[research.graph]
+type = "neo4j"
+uri = "bolt://localhost:7687"
+user = "neo4j"
+password = "research_graph"
+
+[research.parsing]
+pdf_engine = "pymupdf"
+chunk_strategy = "semantic"
+chunk_size = 512
+chunk_overlap = 64
+
+[research.arxiv]
+enabled = false
+
+[research.search]
+enabled = true
