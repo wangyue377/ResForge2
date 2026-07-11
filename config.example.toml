@@ -2,24 +2,27 @@
 provider = "openai"
 
 [llm.main]
-model = "hunyuan/hy3"
+# Hy3 官方版（TokenHub 服务 ID）
+model = "hy3"
 api_key = "${HY3_API_KEY}"
-base_url = "https://api.hunyuan.cloud.tencent.com/v1"
+base_url = "https://tokenhub.tencentmaas.com/v1"
 enable_thinking = false
 multimodal = false
 
 [llm.fast]
-model = "hunyuan/hy3"
+# Hy3 轻量模型
+model = "hy3-preview"
 api_key = "${HY3_API_KEY}"
-base_url = "https://api.hunyuan.cloud.tencent.com/v1"
+base_url = "https://tokenhub.tencentmaas.com/v1"
 
 [llm.vl]
+# 视觉模型（Hy3 不支持多模态，留空）
 model = ""
 api_key = ""
 base_url = ""
 
 [agent]
-system_prompt = "You are Hy3 Research Assistant, built on Tencent Hunyuan Hy3."
+system_prompt = "You are Hy3 Research Assistant, an AI research partner built on Tencent Hunyuan Hy3. Always respond in the same language the user uses."
 max_tokens = 8192
 max_iterations = 40
 dev_mode = false
@@ -38,12 +41,13 @@ enabled = true
 engine = ""
 
 [memory.embedding]
-model = "hunyuan/hy3"
+model = "kinfra-text-embedding-0.6b"
 api_key = "${HY3_API_KEY}"
-base_url = "https://api.hunyuan.cloud.tencent.com/v1"
+base_url = "https://tokenhub.tencentmaas.com/v1"
 
 [proactive]
 enabled = false
+profile = "quiet"
 
 [research]
 enabled = true
@@ -55,12 +59,20 @@ port = 5432
 db = "research_assistant"
 user = "research"
 password = "research_pass"
+pool_size = 10
+max_overflow = 5
 
 [research.graph]
 type = "neo4j"
 uri = "bolt://localhost:7687"
 user = "neo4j"
 password = "research_graph"
+
+[research.cache]
+type = "redis"
+host = "localhost"
+port = 6379
+db = 0
 
 [research.parsing]
 pdf_engine = "pymupdf"
@@ -70,6 +82,23 @@ chunk_overlap = 64
 
 [research.arxiv]
 enabled = false
+categories = ["cs.CV", "cs.AI"]
+max_results = 50
+poll_interval_minutes = 60
+relevance_threshold = 0.6
+
+[research.embedding]
+model = "kinfra-text-embedding-0.6b"
+api_key = "${HY3_API_KEY}"
+base_url = "https://tokenhub.tencentmaas.com/v1"
+dimension = 1024
+
+[research.experiment]
+tracking_enabled = true
 
 [research.search]
 enabled = true
+arxiv_enabled = true
+semantic_scholar_enabled = true
+openalex_enabled = true
+dblp_enabled = true
