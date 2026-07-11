@@ -131,7 +131,7 @@ Agent 的记忆文件（`memory/`）、技能文件（`skills/`）、会话库�
   → 生成综述要点 + 方法演进/对比关系图
 ```
 
-[📺 点此观看演示视频](media/demo/demo.mp4)
+[📺 点此观看演示视频](media/demo/demo.mp4)（需安装 [Git LFS](https://git-lfs.com/) 后 `git lfs pull` 才能本地播放）
 
 ---
 
