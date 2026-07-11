@@ -131,7 +131,7 @@ Agent 的记忆文件（`memory/`）、技能文件（`skills/`）、会话库�
   → 生成综述要点 + 方法演进/对比关系图
 ```
 
-[📺 B站在线播放](https://www.bilibili.com/video/BV135Nw6gEnC/)（演示视频文件较大，GitHub 网页不支持直接预览，可点击链接在线观看）
+[📺 点此观看演示视频](media/demo/demo.mp4)（文件较大，GitHub 网页不支持直接预览 | [B站在线播放](https://www.bilibili.com/video/BV135Nw6gEnC/)）
 
 ---
 
