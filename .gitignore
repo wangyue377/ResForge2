@@ -66,6 +66,3 @@ lme_error_log_*.txt
 
 # 面试备考资料（不上传）
 learning_methods/
-
-# 演示视频（大文件，不上传 Git）
-/media/demo/
