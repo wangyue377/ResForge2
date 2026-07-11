@@ -131,7 +131,7 @@ Agent 的记忆文件（`memory/`）、技能文件（`skills/`）、会话库�
   → 生成综述要点 + 方法演进/对比关系图
 ```
 
-[📺 点此观看演示 GIF](media/demo/demo.gif)（需安装 [Git LFS](https://git-lfs.com/) 后 `git lfs pull` 才能本地查看）
+[📺 点此观看演示视频](media/demo/demo.mp4)（GitHub 网页可直接预览，本地需安装 [Git LFS](https://git-lfs.com/) 后 `git lfs pull`）
 
 ---
 
@@ -204,7 +204,7 @@ ResForge2/
 │   └── chat/                   #   Web Chat 界面
 ├── docker/                     # Docker 编排（PostgreSQL/Neo4j/Redis）
 ├── skills/                     # 技能定义文件
-└── media/demo/                 # 演示 GIF
+└── media/demo/                 # 演示视频（Git LFS）
 ```
 
 ## CodeBuddy 协作记录
